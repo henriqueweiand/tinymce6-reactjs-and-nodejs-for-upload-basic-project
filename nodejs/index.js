@@ -1,14 +1,21 @@
 const express = require("express");
 const multer = require("multer");
 const path = require("path");
+const os = require("os");
+
+const hostname = os.hostname();
+const port = process.env.PORT || 80;
 
 const app = express();
+const reactBuildDir = "reactjs/build";
+const uploadDir = "uploads";
 
-app.use("/uploads", express.static("uploads"));
+app.use("/" + uploadDir, express.static(uploadDir));
+app.use(express.static(path.join(__dirname, "../" + reactBuildDir)));
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads/");
+    cb(null, uploadDir + "/");
   },
   filename: function (req, file, cb) {
     cb(null, `${file.fieldname}-${Date.now()}.${file.mimetype.split("/")[1]}`);
@@ -34,17 +41,26 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get("*", (req, res) => {
+  console.log("ReactJS project running");
+
+  res.sendFile(path.join(__dirname + "/reactjs/build/index.html"));
+});
+
 app.post("/upload/image", upload.single("file"), (req, res) => {
   console.log("Arquivo enviado com sucesso");
 
-  const imagePath = "uploads/" + req.file.filename.replace(/\\/g, path.sep);
+  const imagePath =
+    uploadDir + "/" + req.file.filename.replace(/\\/g, path.sep);
+
+  const response = `/${imagePath}`; // IF you're running from CRA please add full route here http://localhost:${port}/${imagePath}
 
   res.json({
-    location: `http://localhost:80/${imagePath}`,
-    url: `http://localhost:80/${imagePath}`,
+    location: response,
+    url: response,
   });
 });
 
-app.listen(80, () => {
-  console.log("Servidor rodando na porta 80");
+app.listen(port, () => {
+  console.log("Servidor rodando na porta " + port);
 });

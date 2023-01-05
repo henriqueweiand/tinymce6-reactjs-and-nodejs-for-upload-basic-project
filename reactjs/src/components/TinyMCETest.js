@@ -15,7 +15,7 @@ export default function TinyMCETest() {
         initialValue="<p>test.</p>"
         apiKey="fi0vqoss8rb3i7f83hi89thjucjcgbhzms5nyjrlc8i77ior"
         init={{
-          images_upload_url: "http://localhost:80/upload/image", // URL da rota de upload de imagens
+          images_upload_url: "/upload/image", // IF you're running from CRA please add full route here "http://localhost:80/upload/image"
           automatic_uploads: true,
 
           selector: "textarea#open-source-plugins",
