@@ -64,3 +64,6 @@ app.post("/upload/image", upload.single("file"), (req, res) => {
 app.listen(port, () => {
   console.log("Servidor rodando na porta " + port);
 });
+
+// Export the Express API
+module.exports = app;
