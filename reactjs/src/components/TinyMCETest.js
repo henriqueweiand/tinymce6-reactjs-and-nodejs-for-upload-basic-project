@@ -13,7 +13,7 @@ export default function TinyMCETest() {
       <Editor
         onInit={(evt, editor) => (editorRef.current = editor)}
         initialValue="<p>test.</p>"
-        apiKey="fi0vqoss8rb3i7f83hi89thjucjcgbhzms5nyjrlc8i77ior"
+        apiKey=""
         init={{
           images_upload_url: "/upload/image", // IF you're running from CRA please add full route here "http://localhost:80/upload/image"
           automatic_uploads: true,
