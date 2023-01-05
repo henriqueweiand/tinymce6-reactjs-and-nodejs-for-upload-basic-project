@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "concurrently --kill-others \"cd reactjs && npm run start\" \"cd nodejs && npm run start\"",
-    "prebuild": "cd reactjs && npm i && npm run build",
+    "preinstall": "cd reactjs && npm i",
+    "install": "cd nodejs && npm i",
+    "prebuild": "cd reactjs && npm run build",
     "build": "cd nodejs && npm i && npm run prod"
   },
   "repository": {
