@@ -23,5 +23,9 @@
   "homepage": "https://github.com/henriqueweiand/tinymce6-reactjs-and-nodejs-for-upload-basic-project#readme",
   "devDependencies": {
     "concurrently": "^7.6.0"
+  },
+  "engines": { 
+    "npm" : ">=8.19.1",
+    "node" : ">=18.9.0"
   }
 }
